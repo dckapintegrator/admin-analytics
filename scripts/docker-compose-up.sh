@@ -94,13 +94,13 @@ find_and_claim_port() {
 }
 
 # Base ports (defaults from docker-compose.yml)
-BASE_NGINX=80
-BASE_SUPERSET=8088
-BASE_NODE=9000
-BASE_WEBSOCKET=8080
-BASE_CYPRESS=8081
-BASE_DATABASE=5432
-BASE_REDIS=6379
+BASE_NGINX=${BASE_NGINX:-80}
+BASE_SUPERSET=${BASE_SUPERSET:-8088}
+BASE_NODE=${BASE_NODE:-9000}
+BASE_WEBSOCKET=${BASE_WEBSOCKET:-8080}
+BASE_CYPRESS=${BASE_CYPRESS:-8081}
+BASE_DATABASE=${BASE_DATABASE:-5432}
+BASE_REDIS=${BASE_REDIS:-6379}
 
 # Find available ports (no subshells - claims persist correctly)
 echo "🔍 Finding available ports..."
