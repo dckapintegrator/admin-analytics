@@ -55,7 +55,7 @@ services:
     image: nginx:latest
     restart: unless-stopped
     ports:
-      - "${NGINX_PORT:-80}:80"
+      - "${EXPOSE_NGINX_PORT:-80}:80"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
@@ -66,7 +66,7 @@ services:
     image: redis:7
     restart: unless-stopped
     ports:
-      - "127.0.0.1:${REDIS_PORT:-6379}:6379"
+      - "127.0.0.1:${EXPOSE_REDIS_PORT:-6379}:6379"
     volumes:
       - redis:/data
 
@@ -79,7 +79,7 @@ services:
     image: postgres:17
     restart: unless-stopped
     ports:
-      - "127.0.0.1:${DATABASE_PORT:-5432}:5432"
+      - "127.0.0.1:${EXPOSE_DATABASE_PORT:-5432}:5432"
     volumes:
       - db_home:/var/lib/postgresql/data
       - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
@@ -95,9 +95,9 @@ services:
     command: ["/app/docker/docker-bootstrap.sh", "app"]
     restart: unless-stopped
     ports:
-      - ${SUPERSET_PORT:-8088}:8088
+      - "${EXPOSE_SUPERSET_PORT:-8088}:8088"
       # When in cypress-mode ->
-      - ${CYPRESS_PORT:-8081}:8081
+      - "${EXPOSE_CYPRESS_PORT:-8081}:8081"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     user: *superset-user
