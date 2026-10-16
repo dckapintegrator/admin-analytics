@@ -39,6 +39,8 @@ const metadata = new ChartMetadata({
   thumbnailDark,
   // The second query only keeps Superset's "No results" screen away; see alwaysOneRow
   queryObjectCount: 2,
+  // Rows drill in place, so the dashboard cross-filter / drill-by menu is hidden
+  suppressContextMenu: true,
 });
 
 export default class UsageSummaryChartPlugin extends ChartPlugin<UsageSummaryFormData> {
